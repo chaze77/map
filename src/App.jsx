@@ -4,10 +4,10 @@ import TableRoad from "./components/Table/Table";
 
 function App() {
   return (
-    <>
+    <div style={{ display: "flex" }}>
       <TableRoad />
       <Map />
-    </>
+    </div>
   );
 }
 

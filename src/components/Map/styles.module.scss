@@ -1,0 +1,12 @@
+/* styles.module.css */
+.container {
+  max-width: 600px;
+  height: 400px;
+  // margin: 0 auto;
+}
+
+/* Новый стиль для внутреннего контейнера карты */
+.mapContainer {
+  width: 100%;
+  height: 100%;
+  }

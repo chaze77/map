@@ -9,13 +9,12 @@ function* fetchRouteCoordinates(action) {
     // Отправляем запрос к API OSRM для получения данных маршрута по переданным координатам
     const response = yield call(requestRouteCoordinates, coordinates);
     // Извлекаем координаты маршрута из ответа
-    const routeCoordinates = response.routes[0].geometry.coordinates;
+    const newCoordinates = response.routes[0].geometry.coordinates;
     // Отправляем полученные координаты в Redux store с помощью Redux Toolkit
-    yield put(setRouteCoordinates(routeCoordinates));
+    yield put(setRouteCoordinates(newCoordinates));
   } catch (error) {
     // Обрабатываем ошибку, если запрос не удался
     console.error("Error fetching route coordinates:", error);
-    // Можно добавить дополнительные действия при ошибке, если требуется
   }
 }
 

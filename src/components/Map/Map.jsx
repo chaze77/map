@@ -6,22 +6,18 @@ import {
   Popup,
   TileLayer,
 } from "react-leaflet";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { useSelector } from "react-redux";
 
 const Map = () => {
   // Получаем координаты маршрута из Redux store с помощью useSelector
   const { routeCoordinates } = useSelector((state) => state.map);
-  //   const routeCoordinates = routeCoordinatesData?.routeCoordinates; // Добавляем дополнительную проверку
 
-  console.log("нукась", routeCoordinates);
-
-  //
-  const isValidCoordinates =
-    Array.isArray(routeCoordinates) && routeCoordinates.length > 0;
+  const isValidCoordinates = routeCoordinates.length > 0;
+  console.log(routeCoordinates.length);
 
   // Если routeCoordinates не является действительными координатами, установим position по умолчанию
-  const position = isValidCoordinates
+  const center = isValidCoordinates
     ? routeCoordinates[0]
     : [
         [59.983762, 30.311365],
@@ -29,23 +25,21 @@ const Map = () => {
         [59.985265, 30.311652],
       ];
 
-  console.log(isValidCoordinates);
-
   return (
     <div className={styles.container}>
       {/* Добавлен внутренний контейнер с классом mapContainer */}
       <div className={styles.mapContainer}>
         <MapContainer
-          center={position}
+          center={center}
           zoom={13}
           scrollWheelZoom={true}
-          style={{ width: "500px", height: "500px" }}
+          style={{ width: "900px", height: "500px" }}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={position}>
+          <Marker position={center}>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
@@ -54,7 +48,7 @@ const Map = () => {
           {isValidCoordinates && (
             <Polyline
               positions={routeCoordinates}
-              pathOptions={{ color: "red" }}
+              pathOptions={{ color: "orange" }}
             />
           )}
         </MapContainer>

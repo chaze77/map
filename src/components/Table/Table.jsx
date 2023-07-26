@@ -1,11 +1,11 @@
 import React from "react";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedRoute, setRouteCoordinates } from "../../features/mapSlice";
-import { requestRouteCoordinates } from "../../HTTP-services/trackService";
+import { setSelectedRoute } from "../../features/mapSlice";
+import { routes } from "./trackData";
+import styles from "./style.module.scss";
 
 const TableRoad = () => {
-  //   const { routeCoordinates, selectedRoute } = useSelector((state) => state.map);
   const dispatch = useDispatch();
 
   const handleRouteClick = async (record) => {
@@ -30,36 +30,6 @@ const TableRoad = () => {
       console.error("Error fetching route coordinates:", error);
     }
   };
-
-  //   console.log(selectedRoute);
-  //   console.log(routeCoordinates);
-
-  const routes = [
-    {
-      title: "Маршрут 1",
-      coordinates: [
-        [59.84660399, 30.29496392],
-        [59.82934196, 30.42423701],
-        [59.83567701, 30.38064206],
-      ],
-    },
-    {
-      title: "Маршрут 2",
-      coordinates: [
-        [59.82934196, 30.42423701],
-        [59.82761295, 30.41705607],
-        [59.84660399, 30.29496392],
-      ],
-    },
-    {
-      title: "Маршрут 3",
-      coordinates: [
-        [59.83567701, 30.38064206],
-        [59.84660399, 30.29496392],
-        [59.82761295, 30.41705607],
-      ],
-    },
-  ];
 
   const columns = [
     {
@@ -86,8 +56,9 @@ const TableRoad = () => {
   });
 
   return (
-    <div style={{ flex: 1, paddingRight: "10px" }}>
+    <div>
       <Table
+        className={styles.table}
         columns={columns}
         dataSource={data}
         pagination={false}

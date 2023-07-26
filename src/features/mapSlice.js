@@ -3,10 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   routeCoordinates: [
-    [51.505, -0.09],
-    [51.51, -0.1],
-    [51.51, -0.12],
+    [59.983762, 30.311365],
+    [59.98442, 30.311414],
+    [59.985265, 30.311652],
   ],
+
   selectedRoute: null,
 };
 
